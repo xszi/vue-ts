@@ -15,11 +15,9 @@ export default class TabNav extends Vue {
 
     changeActiveTab (tabName: string) {
         this.tab = tabName;
-        const bar = <HTMLElement>document.getElementsByClassName('tabs-active-bar')[0];
+        const bar = document.getElementsByClassName('tabs-active-bar')[0] as HTMLElement;
         // ts语法需要加类型断言<HTMLElement>
-        console.log(bar, 'ccc');
-        const tab = <HTMLElement>this.$refs[`tab-${tabName}`];
-        console.log(bar, 'ccc');
+        const tab = this.$refs[`tab-${tabName}`] as HTMLElement;
         if (!bar || !tab || !tab.querySelector('.text')) {
             return;
         }
