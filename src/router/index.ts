@@ -18,6 +18,12 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/tab-view",
+    name: "TabView",
+    component: () =>
+      import(/* webpackChunkName: "tab-view" */ "../views/TabView.vue")
   }
 ];
 
