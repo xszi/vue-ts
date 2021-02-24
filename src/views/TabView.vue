@@ -1,11 +1,10 @@
 <template>
   <div class="tab-view">
-    <h3>这是Tab组件测试页面</h3>
+    <h3>这是Tab组件测试页面</h3><a href="https://github.com/xszi/vue-ts/tree/main/src/components/tabNav" target="_blank">源码地址</a>
     <h5>tab文字后面带数字，但是bar需要停留在文字中间的下方</h5>
     <TabNav :tabs="tabs" />
     <div class="desc">
         <img src="../assets/tabbar.png">
-        <a href="https://github.com/xszi/vue-ts/tree/main/src/components/tabNav" target="_blank">源码地址</a>
     </div>
   </div>
 </template>
