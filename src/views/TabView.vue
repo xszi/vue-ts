@@ -50,6 +50,7 @@ h5
     img
         display: inline-block
         width: 300px
+        margin: 20px auto
     a
         margin-left: 20px
 </style>

@@ -60,13 +60,16 @@ export default class Transfer extends Vue {
 <style lang="stylus" scoped>
 h5
     color: red;
-.desc 
+.desc
+    width: 100%
+    height: 100%
     margin-top: 20px
     display: flex;
     flex-direction: column
     img
         display: inline-block
         width: 300px
+        margin: 20px auto
     a
         margin-left: 20px
 </style>
