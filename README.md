@@ -4,10 +4,10 @@
 
 我将在这个`vue+ts`项目中练习工作当中学习的新方法。
 
-练习目录如下：
+练习目录：
 
-* [一个类似el-tabs的组件](https://xszi.github.io/vue-ts/tab-view)
-* [改写el-transfer实现定制化需求](https://xszi.github.io/vue-ts/transfer-view)
+* P1：一个类似el-tabs的组件
+* P2：transfer组件实现定制化需求
 * 实现一个多层嵌套导航组件
 * 改写仪表盘组件`guage.js`
 * 使用`mixins`实现分页组件的封装
@@ -15,6 +15,7 @@
 
 * 路由模块化，状态管理模块化
 
+[在线演示](https://xszi.github.io/vue-ts)
 
 ## 构建该项目遇到的一些问题：
 
