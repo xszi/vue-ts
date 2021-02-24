@@ -24,6 +24,18 @@ const routes: Array<RouteConfig> = [
     name: "TabView",
     component: () =>
       import(/* webpackChunkName: "tab-view" */ "../views/TabView.vue")
+  },
+  {
+    path: "/transfer-view",
+    name: "TransferView",
+    component: () =>
+      import(/* webpackChunkName: "tab-view" */ "../views/TransferView.vue")
+  },
+  {
+    path: "/treenav-view",
+    name: "TreeNavView",
+    component: () =>
+      import(/* webpackChunkName: "tab-view" */ "../views/TreeNavView.vue")
   }
 ];
 
