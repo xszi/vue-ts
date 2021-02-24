@@ -10,8 +10,8 @@
     <p>v-model: {{value}}</p>
     <!-- <i-tree /> -->
     <div class="desc">
-        <img src="../assets/tabbar.png">
-        <a href="https://github.com/xszi/vue-ts/tree/main/src/components/tabNav" target="_blank">源码地址</a>
+        <img src="../assets/transfer.png">
+        <a href="https://github.com/xszi/vue-ts/tree/main/packages/tree-transfer" target="_blank">源码地址</a>
     </div>
   </div>
 </template>

@@ -6,12 +6,13 @@
 
 练习目录如下：
 
-* 改写el-transfer实现定制化需求
-* 实现一个多层嵌套组件
+* [一个类似el-tabs的组件](https://xszi.github.io/vue-ts/tab-view)
+* [改写el-transfer实现定制化需求](https://xszi.github.io/vue-ts/transfer-view)
+* 实现一个多层嵌套导航组件
 * 改写仪表盘组件`guage.js`
 * 使用`mixins`实现分页组件的封装
 * 使用`layout+slot`简化重复样式的书写
-* 一个类似el-tabs的组件
+
 * 路由模块化，状态管理模块化
 
 
