@@ -18,6 +18,10 @@
             <td><router-link to="/treenav-view" title="点击可在线查看效果">P3：treenav组件</router-link></td>
             <td>实现一个树形导航组件，点击打开子目录导航</td>
         </tr>
+        <tr>
+            <td><router-link to="/gauge-view" title="点击可在线查看效果">P4：改写gauge组件</router-link></td>
+            <td>改写gauge组件，原gauge组件使用时不够灵活，传值类型报错，颜色不符合生产需求</td>
+        </tr>
     </table>
   </div>
 </template>

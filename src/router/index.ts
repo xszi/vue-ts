@@ -27,6 +27,12 @@ const routes: Array<RouteConfig> = [
     name: "TreeNavView",
     component: () =>
       import(/* webpackChunkName: "treenav-view" */ "../views/TreeNavView.vue")
+  },
+  {
+    path: "/gauge-view",
+    name: "GaugeView",
+    component: () =>
+      import(/* webpackChunkName: "treenav-view" */ "../views/GaugeView.vue")
   }
 ];
 

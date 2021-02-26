@@ -1,0 +1,6 @@
+{
+    "rulesDirectory": ["./src/views/GaugeView.vue"],
+    "rules": {
+      "no-inferrable-types": [true, "ignore-params", "ignore-properties"]
+    }
+}
