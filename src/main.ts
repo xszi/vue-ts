@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import './shared'
 import iTreeTransfer from '../packages/index'
 import iTree from '../packages/index'
 
