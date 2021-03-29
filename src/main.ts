@@ -7,11 +7,13 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './shared'
 import iTreeTransfer from '../packages/index'
 import iTree from '../packages/index'
+import iUpload from '../packages/index'
 
 Vue.config.productionTip = false;
 Vue.use(elementUI)
 Vue.use(iTreeTransfer)
 Vue.use(iTree)
+Vue.use(iUpload)
 
 new Vue({
   router,

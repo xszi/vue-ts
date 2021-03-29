@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = [
     path: "/transfer-view",
     name: "TransferView",
     component: () =>
-      import(/* webpackChunkName: "tab-view" */ "../views/TransferView.vue")
+      import(/* webpackChunkName: "transfer-view" */ "../views/TransferView.vue")
   },
   {
     path: "/treenav-view",
@@ -32,7 +32,13 @@ const routes: Array<RouteConfig> = [
     path: "/gauge-view",
     name: "GaugeView",
     component: () =>
-      import(/* webpackChunkName: "treenav-view" */ "../views/GaugeView.vue")
+      import(/* webpackChunkName: "gauge-view" */ "../views/GaugeView.vue")
+  },
+  {
+    path: "/my-upload",
+    name: "MyUpload",
+    component: () =>
+      import(/* webpackChunkName: "my-upload" */ "../views/MyUpload.vue")
   }
 ];
 

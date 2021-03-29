@@ -22,6 +22,10 @@
             <td><router-link to="/gauge-view" title="点击可在线查看效果">P4：改写gauge组件</router-link></td>
             <td>gauge组件，原gauge组件使用时不够灵活，传值类型报错，颜色不符合生产需求</td>
         </tr>
+        <tr>
+            <td><router-link to="/my-upload" title="点击可在线查看效果">P5：改写上传组件upload</router-link></td>
+            <td>上传失败状态码问题</td>
+        </tr>
     </table>
   </div>
 </template>
