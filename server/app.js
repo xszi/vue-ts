@@ -57,7 +57,8 @@ app.use(function (req, res, next) {
 app.use(upload.any())
 // 上传组件测试路由
 app.post('/upload', async (req, res) => {
-    console.log('到API了哦');
+    // console.log(res, '到API了哦');
+    res.status(404)
     res.send({
         error: 0,
         data: req.body,
