@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td><router-link to="/my-upload" title="点击可在线查看效果">P5：阅读调试上传组件upload源码</router-link></td>
-            <td>使用Node后台服务保存上传文件，设置返回状态码</td>
+            <td>使用Node后台服务保存上传文件，设置返回状态码，前端跨域代理设置</td>
         </tr>
     </table>
   </div>

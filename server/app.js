@@ -66,6 +66,24 @@ app.post('/upload', async (req, res) => {
     })
 });
 
+app.get('/click1', async (req, res) => {
+    // console.log(res, '到API了哦');
+    res.send({
+        error: 0,
+        data: req.body,
+        msg: 'click1'
+    })
+});
+
+app.get('/click2', async (req, res) => {
+    // console.log(res, '到API了哦');
+    res.send({
+        error: 0,
+        data: req.body,
+        msg: 'click2'
+    })
+});
+
 http.listen(3000, function(){
     console.log('listening on *:3000');
 });

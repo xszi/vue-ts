@@ -30,10 +30,15 @@
         只能上传jpg/png文件，且不超过500kb
       </div>
     </i-upload>
+    <div class="btn-click">
+      <el-button @click="toClick(1)">点击1</el-button>
+      <el-button @click="toClick(2)">点击2</el-button>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 
@@ -53,10 +58,25 @@ export default class MyUpload extends Vue {
       } 个文件`
     );
   }
+  toClick(type) {
+    type === 1 &&
+      axios.get("/click1").then((res) => {
+        console.log(res, "kkkkkk");
+      });
+
+    type === 2 &&
+      axios.get("/click2").then((res) => {
+        console.log(res, "hhhhhh");
+      });
+  }
   beforeRemove(file) {
     return this.$confirm(`确定移除 ${file.name}？`);
   }
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.btn-click {
+  margin-top: 30px;
+}
+</style>
