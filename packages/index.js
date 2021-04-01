@@ -1,4 +1,4 @@
-import iTreeTransfer from './tree-transfer/index'
+import iTreeTransfer from './tree-transfer1/index'
 import iTree from './tree/index'
 import iUpload from './upload/index'
 

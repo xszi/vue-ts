@@ -28,21 +28,7 @@
           @click="clearQuery"
         ></i>
       </el-input>
-      <!-- modify -->
-      <!-- <el-checkbox-group
-        v-model="checked"
-        v-show="!hasNoMatch && data.length > 0"
-        :class="{ 'is-filterable': filterable }"
-        class="el-transfer-panel__list">
-        <el-checkbox
-          class="el-transfer-panel__item"
-          :label="item[keyProp]"
-          :disabled="item[disabledProp]"
-          :key="item[keyProp]"
-          v-for="item in filteredData">
-          <option-content :option="item"></option-content>
-        </el-checkbox>
-      </el-checkbox-group> -->
+
       <div
         v-show="data.length > 0"
         :class="{ 'is-filterable': filterable }"
@@ -64,8 +50,9 @@
           </template>
         </el-tree>
       </div>
+
       <p class="el-transfer-panel__empty" v-show="data.length === 0">
-        {{ '暂无数据' }}
+        {{ "暂无数据" }}
       </p>
     </div>
     <p class="el-transfer-panel__footer" v-if="hasFooter">
@@ -75,12 +62,6 @@
 </template>
 
 <script>
-/**
- * modify
- */
-//   import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
-//   import ElCheckbox from 'element-ui/packages/checkbox';
-//   import ElInput from 'element-ui/packages/input';
 import { deepCopy } from "../mixins/deepCopy";
 
 export default {
@@ -89,9 +70,6 @@ export default {
   componentName: "ElTransferPanel",
 
   components: {
-    //   ElCheckboxGroup,
-    //   ElCheckbox,
-    //   ElInput,
     OptionContent: {
       props: {
         option: Object,
@@ -113,7 +91,6 @@ export default {
         ) : transfer.$scopedSlots.default ? (
           transfer.$scopedSlots.default({ option: this.option })
         ) : (
-          //   : <span>{ this.option[panel.labelProp] || this.option[panel.keyProp] }</span>;
           <span>
             {this.option.data[panel.labelProp] ||
               this.option.data[panel.keyProp]}
@@ -144,7 +121,6 @@ export default {
     return {
       checked: [],
       allChecked: false,
-      halfChecked: [],
       query: "",
       inputHover: false,
       checkChangeByUser: true,
@@ -153,13 +129,12 @@ export default {
 
   watch: {
     checked(val, oldVal) {
-      this.updateAllChecked();
+      this.updateAllChecked(); // 判断是否全选
       if (this.checkChangeByUser) {
         const movedKeys = val
           .concat(oldVal)
           .filter((v) => val.indexOf(v) === -1 || oldVal.indexOf(v) === -1);
-        // this.$emit("checked-change", val, movedKeys);
-        this.$emit("checked-change", val, movedKeys, this.halfChecked);
+        this.$emit("checked-change", val, movedKeys);
       } else {
         this.$emit("checked-change", val);
         this.checkChangeByUser = true;
@@ -167,17 +142,6 @@ export default {
     },
 
     data() {
-      //   const checked = [];
-      //   const filteredDataKeys = this.filteredData.map(
-      //     (item) => item[this.keyProp]
-      //   );
-      //   this.checked.forEach((item) => {
-      //     if (filteredDataKeys.indexOf(item) > -1) {
-      //       checked.push(item);
-      //     }
-      //   });
-      //   this.checkChangeByUser = false;
-      //   this.checked = checked;
       const checked = [];
       const filteredDataKeys = this.getAllChecked(this.checkableData);
       this.checked.forEach((item) => {
@@ -203,9 +167,6 @@ export default {
         )
           return;
         const checked = [];
-        // const checkableDataKeys = this.checkableData.map(
-        //   (item) => item[this.keyProp]
-        // );
         const checkableDataKeys = this.getAllChecked(this.checkableData);
         val.forEach((item) => {
           if (checkableDataKeys.indexOf(item) > -1) {
@@ -216,6 +177,7 @@ export default {
         this.checked = checked;
       },
     },
+
     query(val) {
       this.$refs.tree.filter(val);
     },
@@ -223,19 +185,11 @@ export default {
 
   computed: {
     filteredData() {
-      //   return this.data.filter((item) => {
-      //     if (typeof this.filterMethod === "function") {
-      //       return this.filterMethod(this.query, item);
-      //     } else {
-      //       const label = item[this.labelProp] || item[this.keyProp].toString();
-      //       return label.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-      //     }
-      //   });
+      // tree 渲染数据
       return this.data;
     },
 
     checkableData() {
-      //   return this.filteredData.filter((item) => !item[this.disabledProp]);
       const dataCopy = deepCopy(this.data);
 
       const filterFun = (list) => {
@@ -251,8 +205,6 @@ export default {
     },
 
     isIndeterminate() {
-      //   const checkedLength = this.checked.length;
-      //   return checkedLength > 0 && checkedLength < this.checkableData.length;
       const checkedLength = this.checked.length;
 
       const filteredDataKeys = this.getAllChecked(this.checkableData);
@@ -270,6 +222,10 @@ export default {
       return this.props.label || "label";
     },
 
+    childrenProp() {
+      return this.props.children || "children";
+    },
+
     keyProp() {
       return this.props.key || "key";
     },
@@ -284,7 +240,6 @@ export default {
   },
 
   methods: {
-    //   modify
     filterNode(value, data) {
       // tree 筛选
       if (this.filterMethod) {
@@ -293,39 +248,15 @@ export default {
       if (!value) return true;
       return data[this.labelProp].indexOf(value) !== -1;
     },
-    handleCheck(cur, checkedInfo) {
-      const { checkedKeys, halfCheckedKeys } = checkedInfo;
-      this.checked = checkedKeys;
-      this.halfChecked = halfCheckedKeys;
-    },
+
     updateAllChecked() {
-      // modify
-      //   const checkableDataKeys = this.checkableData.map(
-      //     (item) => item[this.keyProp]
-      //   );
       const checkableDataKeys = this.getAllChecked(this.checkableData);
       this.allChecked =
         checkableDataKeys.length > 0 &&
         checkableDataKeys.every((item) => this.checked.indexOf(item) > -1);
     },
 
-    // modify
-    getAllChecked(list) {
-      const keys = [];
-      list.forEach((item) => {
-        keys.push(item[this.keyProp]);
-        if (item[this.childrenProp]) {
-          keys.push(...this.getAllChecked(item[this.childrenProp]));
-        }
-      });
-      return keys;
-    },
-
     handleAllCheckedChange(value) {
-      // modify
-      //   this.checked = value
-      //     ? this.checkableData.map((item) => item[this.keyProp])
-      //     : [];
       const checks = [];
       const getChecked = (list) => {
         list.forEach((item) => {
@@ -347,10 +278,27 @@ export default {
       this.checked = this.$refs.tree.getCheckedKeys();
     },
 
+    getAllChecked(list) {
+      const keys = [];
+      list.forEach((item) => {
+        keys.push(item[this.keyProp]);
+        if (item[this.childrenProp]) {
+          keys.push(...this.getAllChecked(item[this.childrenProp]));
+        }
+      });
+      return keys;
+    },
+
     clearQuery() {
       if (this.inputIcon === "circle-close") {
         this.query = "";
       }
+    },
+
+    handleCheck(cur, checkedInfo) {
+      const { checkedKeys } = checkedInfo;
+      console.log(checkedKeys, "checkedKeys");
+      this.checked = checkedKeys;
     },
   },
 };

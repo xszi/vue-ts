@@ -1,18 +1,20 @@
 <template>
   <div class="tab-view">
-    <h3>这是Transfer组件测试页面</h3>
-    <a href="https://github.com/xszi/vue-ts/tree/main/packages/tree-transfer" target="_blank">源码地址</a>
+    <!-- <h3>这是Transfer组件测试页面</h3>
+    <a href="https://github.com/xszi/vue-ts/tree/main/packages/tree-transfer" target="_blank">源码地址</a> -->
     <h5>具有树形嵌套结构的穿梭框</h5>
     <i-tree-transfer
         v-model="value"
         :data="data"
         filterable
     />
+    <!-- <i-tree-transfer :value="value" @input="value=$event.target.value"> -->
+        <!-- v-model就是绑定了一个名为value的props和一个事件input -->
     <p>v-model: {{value}}</p>
     <!-- <i-tree /> -->
-    <div class="desc">
+    <!-- <div class="desc">
         <img src="../assets/transfer.png">
-    </div>
+    </div> -->
   </div>
 </template>
 

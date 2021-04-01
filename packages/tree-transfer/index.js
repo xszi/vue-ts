@@ -1,7 +1,8 @@
-import iTreeTransfer from './src/main.vue'
+import Transfer from './src/main';
 
-iTreeTransfer.install = function (Vue) {
-    Vue.component(iTreeTransfer.name, iTreeTransfer)
-}
+/* istanbul ignore next */
+Transfer.install = function(Vue) {
+  Vue.component(Transfer.name, Transfer);
+};
 
-export default iTreeTransfer
+export default Transfer;
