@@ -1,11 +1,10 @@
 <template>
   <div class="el-transfer">
-      <!-- v-bind="$props": 可以将父组件的所有props下发给它的子组件,子组件需要在其props:{} 中定义要接受的props。 -->
     <transfer-panel
       v-bind="$props"
       ref="leftPanel"
       :data="sourceData"
-      :title="titles[0] || '左边列表'"
+      :title="titles[0] || '列表11111'"
       :default-checked="leftDefaultChecked"
       :placeholder="filterPlaceholder || '请输入搜索内容'"
       @checked-change="onSourceCheckedChange"
@@ -32,14 +31,13 @@
         <i class="el-icon-arrow-right"></i>
       </el-button>
     </div>
-    {{targetData}}
     <transfer-panel
       v-bind="$props"
       ref="rightPanel"
       :data="targetData"
-      :title="titles[1] || '右边列表'"
+      :title="titles[1] || '列表2'"
       :default-checked="rightDefaultChecked"
-      :placeholder="filterPlaceholder"
+      :placeholder="filterPlaceholder || '请输入搜索内容'"
       @checked-change="onTargetCheckedChange"
     >
       <slot name="right-footer"></slot>
@@ -52,16 +50,12 @@ import Emitter from "../mixins/emitter";
 import TransferPanel from "./transfer-panel.vue";
 import Migrating from "../mixins/migrating";
 import { deepCopy } from "../mixins/deepCopy";
-
 export default {
   name: "iTreeTransfer",
-
   mixins: [Emitter, Migrating],
-
   components: {
     TransferPanel,
   },
-
   props: {
     data: {
       type: Array,
@@ -118,6 +112,7 @@ export default {
         return {
           label: "label",
           key: "key",
+          children: "children",
           disabled: "disabled",
         };
       },
@@ -127,7 +122,6 @@ export default {
       default: "original",
     },
   },
-
   data() {
     return {
       leftChecked: [],
@@ -135,19 +129,9 @@ export default {
       rightFalfChecked: [],
     };
   },
-
   computed: {
-    // dataObj() {
-    //   const key = this.props.key;
-    //   return this.data.reduce((o, cur) => (o[cur[key]] = cur) && o, {});
-    // },
-    // 左边数据筛选
     sourceData() {
-      //   return this.data.filter(
-      //     (item) => this.value.indexOf(item[this.props.key]) === -1
-      //   );
       const data = deepCopy(this.data);
-
       const filterData = (list) => {
         return list.filter((item) => {
           if (
@@ -159,33 +143,16 @@ export default {
           return this.value.indexOf(item[this.props.key]) === -1;
         });
       };
-
       return filterData(data);
     },
-    // 右边数据筛选
     targetData() {
-      //   if (this.targetOrder === "original") {
-      //     return this.data.filter(
-      //       (item) => this.value.indexOf(item[this.props.key]) > -1
-      //     );
-      //   } else {
-      //     return this.value.reduce((arr, cur) => {
-      //       const val = this.dataObj[cur];
-      //       if (val) {
-      //         arr.push(val);
-      //       }
-      //       return arr;
-      //     }, []);
-      //   }
       const data = deepCopy(this.data);
-    console.log(data, 'data');
       const filterData = (list) => {
         const res = [];
         list.forEach((item) => {
           if (this.value.indexOf(item[this.props.key]) > -1) {
             res.push(item);
           }
-
           if (
             item[this.props.children] &&
             item[this.props.children].length > 0
@@ -194,7 +161,6 @@ export default {
             if (result.length > 0) {
               item[this.props.children] = result;
               const find = res.find((i) => i.key === item.key);
-
               if (find === undefined) {
                 res.push(item);
               }
@@ -205,18 +171,15 @@ export default {
       };
       return filterData(data);
     },
-
     hasButtonTexts() {
       return this.buttonTexts.length === 2;
     },
   },
-
   watch: {
     value(val) {
       this.dispatch("ElFormItem", "el.form.change", val);
     },
   },
-
   methods: {
     getMigratingConfig() {
       return {
@@ -225,28 +188,19 @@ export default {
         },
       };
     },
-
     onSourceCheckedChange(val, movedKeys) {
       this.leftChecked = val;
       if (movedKeys === undefined) return;
       this.$emit("left-check-change", val, movedKeys);
     },
-
     onTargetCheckedChange(val, movedKeys, falfChecked) {
       this.rightChecked = val;
       this.rightFalfChecked = falfChecked;
       if (movedKeys === undefined) return;
       this.$emit("right-check-change", val, movedKeys);
     },
-
     addToLeft() {
-      let currentValue = this.value.slice();
-      //   this.rightChecked.forEach((item) => {
-      //     const index = currentValue.indexOf(item);
-      //     if (index > -1) {
-      //       currentValue.splice(index, 1);
-      //     }
-      //   });
+      const currentValue = this.value.slice();
       const list = this.rightChecked.concat(this.rightFalfChecked);
       list.forEach((item) => {
         const index = currentValue.indexOf(item);
@@ -257,28 +211,20 @@ export default {
       this.$emit("input", currentValue);
       this.$emit("change", currentValue, "left", this.rightChecked);
     },
-
     addToRight() {
-      console.log(this.data, "fffff");
-
       let currentValue = this.value.slice();
       const itemsToBeMoved = [];
-
       const findSelectkey = (list) => {
         const key = this.props.key;
         const itemsToBeMoved = [];
-
         list.forEach((item) => {
           const itemKey = item[key];
-          console.log(this.leftChecked, itemKey, "leftChecked");
-          console.log(this.value, "this.value");
           if (
             this.leftChecked.indexOf(itemKey) > -1 &&
             this.value.indexOf(itemKey) === -1
           ) {
             itemsToBeMoved.push(itemKey);
           }
-
           if (
             item[this.props.children] &&
             item[this.props.children].length > 0
@@ -288,30 +234,14 @@ export default {
         });
         return itemsToBeMoved;
       };
-
       itemsToBeMoved.push(...findSelectkey(this.data));
-
-      console.log(itemsToBeMoved, 'itemsToBeMoved')
-
       currentValue = currentValue.concat(itemsToBeMoved);
-
-      //   this.data.forEach((item) => {
-      //     const itemKey = item[key];
-      //     if (
-      //       this.leftChecked.indexOf(itemKey) > -1 &&
-      //       this.value.indexOf(itemKey) === -1
-      //     ) {
-      //       itemsToBeMoved.push(itemKey);
-      //     }
-      //   });
-      //   currentValue =
-      //     this.targetOrder === "unshift"
-      //       ? itemsToBeMoved.concat(currentValue)
-      //       : currentValue.concat(itemsToBeMoved);
+      // currentValue = this.targetOrder === 'unshift'
+      //     ? itemsToBeMoved.concat(currentValue)
+      //     : currentValue.concat(itemsToBeMoved)
       this.$emit("input", currentValue);
       this.$emit("change", currentValue, "right", this.leftChecked);
     },
-
     clearQuery(which) {
       if (which === "left") {
         this.$refs.leftPanel.query = "";

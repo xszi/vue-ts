@@ -120,6 +120,7 @@ export default {
   data() {
     return {
       checked: [],
+      halfChecked: [],
       allChecked: false,
       query: "",
       inputHover: false,
@@ -134,7 +135,7 @@ export default {
         const movedKeys = val
           .concat(oldVal)
           .filter((v) => val.indexOf(v) === -1 || oldVal.indexOf(v) === -1);
-        this.$emit("checked-change", val, movedKeys);
+        this.$emit("checked-change", val, movedKeys, this.halfChecked);
       } else {
         this.$emit("checked-change", val);
         this.checkChangeByUser = true;
@@ -296,9 +297,11 @@ export default {
     },
 
     handleCheck(cur, checkedInfo) {
-      const { checkedKeys } = checkedInfo;
-      console.log(checkedKeys, "checkedKeys");
+      const { checkedKeys, halfCheckedKeys } = checkedInfo;
       this.checked = checkedKeys;
+      this.halfChecked = halfCheckedKeys;
+      console.log(checkedKeys, "checkedKeys");
+      console.log(halfCheckedKeys, "halfCheckedKeys");
     },
   },
 };
