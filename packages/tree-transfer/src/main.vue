@@ -235,6 +235,7 @@ export default {
         return itemsToBeMoved;
       };
       itemsToBeMoved.push(...findSelectkey(this.data));
+      //   已经在右边key加上刚选中的key
       currentValue = currentValue.concat(itemsToBeMoved);
       // currentValue = this.targetOrder === 'unshift'
       //     ? itemsToBeMoved.concat(currentValue)

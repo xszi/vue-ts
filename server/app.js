@@ -89,6 +89,7 @@ http.listen(3000, function(){
 });
 
 //链接数据库
+// 启动本地mongodb数据库，mongod --dbpath D:\mongodb\data
 var dataUrl = 'mongodb://localhost:27017/mall'
 mongoose.connect(dataUrl, function (err, res) {
     if(err){

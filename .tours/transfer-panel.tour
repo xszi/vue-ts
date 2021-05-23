@@ -13,6 +13,12 @@
       "title": "el-tree替换"
     },
     {
+      "file": "packages/tree-transfer1/src/transfer-panel.vue",
+      "description": "选中方法check，获取选中点的信息（**key**）",
+      "line": 298,
+      "title": "获取check信息"
+    },
+    {
       "file": "packages/tree-transfer1/src/main.vue",
       "description": "点击向右添加，修改addToRight方法",
       "line": 232,
@@ -27,12 +33,6 @@
         }
       },
       "title": "修改addToRight方法"
-    },
-    {
-      "file": "packages/tree-transfer1/src/transfer-panel.vue",
-      "description": "选中方法check，获取选中点的信息（**key**）",
-      "line": 298,
-      "title": "获取check信息"
     },
     {
       "file": "packages/tree-transfer1/src/main.vue",
